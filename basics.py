@@ -47,9 +47,25 @@ def delete_data(self, id):
             cur = conn.cursor()
             sql = "DELETE FROM course WHERE id = ?"
             cur.execute(sql, [id])
-            
+
     except Exception:
         False
     
 
 #TODO user interface goes here
+
+def main():
+    print("*"*40)
+    print("\n:: COURSE MANAGEMENT ::\n")
+    print("*"*40)
+    print("\n")
+
+    db = DatabaseManage()
+
+    print("#"*40)
+    print("\n :: USER MANUAL :: \n")
+    print("#"*40)
+
+    print("1. INSERT A NEW COURSE")
+    print("2. SHOW ALL COURSES")
+    print("3. DELETE A COURSE")
