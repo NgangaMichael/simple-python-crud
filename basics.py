@@ -19,37 +19,39 @@ class DatabaseManage(object):
 # code for entering data into the db its a class 
 # this is basic crud 
 
-def insert_data(self, data):
-    
-    try:
-        with conn:
-            cur = conn.cursor()
-            cur.execute(
-                "INSERT INTO course(name, description, price, is_private) VALUES(?,?,?,?)", data
-            )
-    except Exception:
-        return False
+    def insert_data(self, data):
+        
+        try:
+            with conn:
+                cur = conn.cursor()
+                cur.execute(
+                    "INSERT INTO course(name, description, price, is_private) VALUES(?,?,?,?)", data
+                    )
+                return True
+        except Exception:
+            return False
 
-def fetch_data(self):
-    
-    try:
-        with conn:
-            cur = conn.cursor()
-            cur.execute("SELECT * FROM course")
-            return cur.fetchall()
-    except Exception:
-        return False
+    def fetch_data(self):
+        
+        try:
+            with conn:
+                cur = conn.cursor()
+                cur.execute("SELECT * FROM course")
+                return cur.fetchall()
+        except Exception:
+            return False
 
-def delete_data(self, id):
-    
-    try:
-        with conn:
-            cur = conn.cursor()
-            sql = "DELETE FROM course WHERE id = ?"
-            cur.execute(sql, [id])
+    def delete_data(self, id):
+        
+        try:
+            with conn:
+                cur = conn.cursor()
+                sql = "DELETE FROM course WHERE id = ?"
+                cur.execute(sql, [id])
+            return True
 
-    except Exception:
-        False
+        except Exception:
+            False
     
 
 #TODO user interface goes here
@@ -107,4 +109,6 @@ def main():
     else :
         print("\n Bad choice")
 
-
+# how you run your app 
+if __name__ == '__main__':
+    main()
