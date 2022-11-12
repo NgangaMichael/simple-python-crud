@@ -66,6 +66,45 @@ def main():
     print("\n :: USER MANUAL :: \n")
     print("#"*40)
 
-    print("1. INSERT A NEW COURSE")
-    print("2. SHOW ALL COURSES")
-    print("3. DELETE A COURSE")
+    print("\n1. INSERT A NEW COURSE\n")
+    print("2. SHOW ALL COURSES\n")
+    print("3. DELETE A COURSE\n")
+    print("#"*40)
+    print("\n")
+
+    choice = input("\n Enter a choice:")
+
+    if choice == "1":
+        name = input("\n Enter course name: ")
+        description = input("\n Enter course description: ")
+        price = input("\n Enter course price: ")
+        private = input("\n is this course private (0/1): ")
+
+        if db.insert_data([name, description, price, private]):
+            print('Course was inserted succesfully')
+        else:
+            print('Something went wrong')
+    
+    elif choice == '2':
+        print("\n Course LIst")
+
+        for index, item in (db.fetch_data()):
+            print("\n Sl no : " + str(index + 1))
+            print("Course ID : " + str(item[0]))
+            print("Course name : " + str(item[1]))
+            print("Course description : " + str(item[2]))
+            print("Course price : " + str(item[3]))
+            private = "Yes" if item[4] else "No"
+            print("Is private : " + private)
+            print("\n")
+    elif choice == "3":
+        record_id = input('Enter the course ID: ')
+        if db.delete_data(record_id):
+            print("Course was deleted succesfully")
+        else :
+            print("Something went wrong")
+    
+    else :
+        print("\n Bad choice")
+
+
